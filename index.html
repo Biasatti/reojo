@@ -6,12 +6,12 @@
   <meta name="theme-color" content="#111116" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="RASTRO" />
+  <meta name="apple-mobile-web-app-title" content="REOJO" />
   <meta name="description" content="Una cámara experimental de duotono y estelas temporales." />
   <link rel="manifest" href="./manifest.webmanifest" />
   <link rel="icon" href="./icon-192.png" />
   <link rel="apple-touch-icon" href="./icon-180.png" />
-  <title>RASTRO — Cámara experimental</title>
+  <title>REOJO — Cámara experimental</title>
   <style>
     :root{color-scheme:dark;--fg:#f4f0f7;--muted:#aaa5b9;--accent:#f26a7e;--glass:rgba(15,14,23,.72)}
     *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -25,6 +25,8 @@
     .top{position:absolute;top:0;left:0;right:0;padding:calc(env(safe-area-inset-top) + 17px) 19px 18px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(6,6,13,.72),transparent);pointer-events:none}
     .brand{display:flex;align-items:center;gap:10px;letter-spacing:.22em;font-size:11px;font-weight:650}.dot{width:8px;height:8px;border-radius:100%;background:#d0b2ff;box-shadow:0 0 12px #bc8cff}
     .top-actions{display:flex;gap:8px;pointer-events:auto}.circle-btn{border:1px solid #ffffff28;background:#0a091473;color:var(--fg);width:39px;height:39px;display:grid;place-items:center;border-radius:50%;font-size:20px;backdrop-filter:blur(15px)}
+    .zoom-toggle{position:absolute;right:18px;top:calc(env(safe-area-inset-top) + 132px);z-index:4;min-width:49px;height:43px;padding:0 10px;border-radius:22px;border:1px solid #ffffff62;background:#171324bd;color:#f6f0ff;font-size:14px;font-weight:750;letter-spacing:.02em;backdrop-filter:blur(16px)}
+    .zoom-toggle.active{background:#f1eafa;color:#22162c;border-color:#fff}
     .mode-panel{position:absolute;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top) + 69px);display:flex;background:rgba(15,12,25,.65);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:4px;backdrop-filter:blur(16px);z-index:2}
     .mode-panel button{border:0;color:#d7d2e1;background:transparent;letter-spacing:.13em;font-size:11px;font-weight:700;padding:10px 17px;border-radius:30px;min-width:77px}
     .mode-panel button.active{background:#f2eef8;color:#18121f}
@@ -41,6 +43,9 @@
     #record{width:77px;height:77px;border-radius:50%;background:#f7f1fa;border:0;display:grid;place-items:center;box-shadow:0 2px 24px #0006}
     #record span{width:59px;height:59px;background:#f36575;border-radius:50%;transition:all .2s}
     #record.recording span{width:25px;height:25px;border-radius:5px}
+    .photo-trigger{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#ffffff19;border:1px solid #ffffff60;color:#f5f0f9;position:relative}
+    .photo-trigger svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .photo-trigger.flash{background:#f4efff;color:#24202b;transition:background .2s}
     .bottom-text{color:#b4aebe;text-align:center;font-size:10px;letter-spacing:.12em;padding-top:15px;min-height:28px}
     .rec{color:#ff8e9b}.rec:before{content:"● ";font-size:13px}
     .toast{position:absolute;left:20px;right:20px;top:calc(env(safe-area-inset-top) + 145px);margin:auto;max-width:390px;padding:12px 14px;background:#171521ed;border:1px solid #ffffff25;border-radius:13px;text-align:center;font-size:12px;line-height:1.45;z-index:5;opacity:0;transform:translateY(-8px);transition:.2s;pointer-events:none}
@@ -60,15 +65,16 @@
     <div id="trail-ind" class="indicator trail-ind"><span id="trail-number">35%</span><div class="track-v" id="trail-track"></div><span>TRAIL</span></div>
     <div id="color-ind" class="indicator color-ind"><span id="color-number">COLOR 50%</span><div class="track-h" id="color-track"></div></div>
   </div>
-  <div class="top"><span class="brand"><span class="dot"></span>RASTRO <span style="color:#ffffff75;font-size:9px;letter-spacing:.1em">/ 001</span></span><div class="top-actions"><button class="circle-btn" id="flip" aria-label="Cambiar cámara">⟳</button></div></div>
+  <div class="top"><span class="brand"><span class="dot"></span>REOJO <span style="color:#ffffff75;font-size:9px;letter-spacing:.1em">/ 001</span></span><div class="top-actions"><button class="circle-btn" id="reset" title="Restablecer controles" aria-label="Restablecer controles">↺</button><button class="circle-btn" id="flip" aria-label="Cambiar cámara">⟳</button></div></div>
+  <button id="zoom" class="zoom-toggle" aria-label="Activar zoom dos aumentos" aria-pressed="false">1×</button>
   <div class="mode-panel" role="group" aria-label="Modo de estela"><button id="mode-eco" class="active" aria-pressed="true">ECO</button><button id="mode-psy" aria-pressed="false">PSY</button></div>
   <div class="bottom">
     <div class="control-row"><div class="colors"><label class="swatch" style="--swatch:#6654e8" id="swatchA" aria-label="Color de sombras"><input id="colorA" type="color" value="#6654e8" aria-label="Elegir color de sombras"></label><label class="swatch" style="--swatch:#ff9977" id="swatchB" aria-label="Color de luces"><input id="colorB" type="color" value="#ff9977" aria-label="Elegir color de luces"></label><span class="row-label">DUOTONO</span></div><span class="range-label" id="trail-stat">TRAIL 35%</span></div>
-    <div class="record-row"><button class="secondary" id="reset" title="Restablecer controles" aria-label="Restablecer controles">↺</button><button id="record" aria-label="Empezar a grabar"><span></span></button><button class="secondary" id="save" title="Guardar última grabación" aria-label="Guardar última grabación" disabled>↧</button></div>
+    <div class="record-row"><button class="photo-trigger" id="photo" title="Sacar foto" aria-label="Sacar foto"><svg viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button><button id="record" aria-label="Empezar a grabar"><span></span></button><button class="secondary" id="save" title="Guardar última captura" aria-label="Guardar última captura" disabled>↧</button></div>
     <div id="status" class="bottom-text">TOCÁ PARA GRABAR</div>
   </div>
   <div id="toast" class="toast" role="status"></div>
-  <div id="start-sheet" class="sheet"><div class="sheet-card"><div style="color:#d1baff;font-size:27px">◉</div><h1>RASTRO</h1><p>Una cámara para manipular el color y el tiempo. Permití el acceso a la cámara para empezar.</p><button id="start" class="primary">ABRIR CÁMARA</button><p class="small-note">Se necesita HTTPS (por ejemplo, GitHub Pages). El procesamiento ocurre en tu dispositivo.</p></div></div>
+  <div id="start-sheet" class="sheet"><div class="sheet-card"><div style="color:#d1baff;font-size:27px">◉</div><h1>REOJO</h1><p>Una cámara para manipular el color y el tiempo. Permití el acceso a la cámara para empezar.</p><button id="start" class="primary">ABRIR CÁMARA</button><p class="small-note">Se necesita HTTPS (por ejemplo, GitHub Pages). El procesamiento ocurre en tu dispositivo.</p></div></div>
 </div>
 <script>
 (()=>{
@@ -76,11 +82,11 @@
 const $=id=>document.getElementById(id);
 const view=$('view'), video=$('source'),stage=$('stage');
 let gl, progTint,progCompose,quad,videoTexture,currentTexture,historyTextures=[],feedbackTextures=[],currentFbo,feedbackFbos=[],ringIndex=0,historyCount=0,feedbackIndex=0;
-let stream=null, facing='environment',running=false,recording=false,mediaRecorder=null,chunks=[],lastBlob=null,lastURL=null,recStart=0,raf=0,lastFrame=0,frameIndex=0;
-let mode='eco',trail=.35,balance=.5,a=[.4,.33,.91],b=[1,.6,.47],displayMode=0,indicatorTimer=0,toastTimer=0;
+let lastKind=null;let stream=null, facing='environment',running=false,recording=false,mediaRecorder=null,chunks=[],lastBlob=null,lastURL=null,recStart=0,raf=0,lastFrame=0,frameIndex=0;
+let mode='eco',trail=.35,balance=.5,a=[.4,.33,.91],b=[1,.6,.47],displayMode=0,indicatorTimer=0,toastTimer=0,zoom=1;
 const HISTORY=12, FPS=30;
 const vs=`attribute vec2 p;varying vec2 uv;void main(){uv=p*.5+.5;gl_Position=vec4(p,0.,1.);}`;
-const fsTint=`precision mediump float;varying vec2 uv;uniform sampler2D video;uniform vec3 a,b;uniform float balance;uniform float aspectInput,aspectCanvas;void main(){vec2 u=uv;if(aspectInput>aspectCanvas){float s=aspectCanvas/aspectInput;u.x=(u.x-.5)*s+.5;}else{float s=aspectInput/aspectCanvas;u.y=(u.y-.5)*s+.5;}vec3 c=texture2D(video,u).rgb;float lum=dot(c,vec3(.2126,.7152,.0722));float t=clamp((lum-(balance-.5)*.65)*1.12,0.,1.);gl_FragColor=vec4(mix(a,b,smoothstep(.05,.95,t)),1.);}`;
+const fsTint=`precision mediump float;varying vec2 uv;uniform sampler2D video;uniform vec3 a,b;uniform float balance;uniform float aspectInput,aspectCanvas,zoom;void main(){vec2 u=uv;/* Preserve the complete camera field at 1x rather than cropping to fill the screen. */if(aspectInput>aspectCanvas){u.y=(u.y-.5)*(aspectInput/aspectCanvas)+.5;}else{u.x=(u.x-.5)*(aspectCanvas/aspectInput)+.5;}u=(u-.5)/zoom+.5;if(any(lessThan(u,vec2(0.)))||any(greaterThan(u,vec2(1.)))){gl_FragColor=vec4(0.055,0.045,0.07,1.);return;}vec3 c=texture2D(video,u).rgb;float lum=dot(c,vec3(.2126,.7152,.0722));float t=clamp((lum-(balance-.5)*.65)*1.12,0.,1.);gl_FragColor=vec4(mix(a,b,smoothstep(.05,.95,t)),1.);}`;
 const fsCompose=`precision mediump float;varying vec2 uv;uniform sampler2D nowTex,old1,old2,feedbackTex;uniform float trail,modeMix,grainAmount,frame;void main(){vec3 now=texture2D(nowTex,uv).rgb;vec3 one=texture2D(old1,uv).rgb;vec3 two=texture2D(old2,uv).rgb;vec3 prev=texture2D(feedbackTex,uv).rgb;float diff1=length(now-one);float diff2=length(now-two);float mask1=smoothstep(.08,.4,diff1);float mask2=smoothstep(.08,.4,diff2);vec3 echo=mix(now,one,trail*.42*mask1);echo=mix(echo,two,trail*.29*mask2);vec3 psych=mix(now,prev,trail*(.90));vec3 outColor=mix(echo,psych,modeMix);float n=fract(sin(dot(gl_FragCoord.xy+vec2(frame*11.13,frame*7.27),vec2(12.9898,78.233)))*43758.5453)-.5;outColor=clamp(outColor+n*grainAmount,0.,1.);gl_FragColor=vec4(outColor,1.);}`;
 function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
 function program(fragment){const p=gl.createProgram();gl.attachShader(p,shader(gl.VERTEX_SHADER,vs));gl.attachShader(p,shader(gl.FRAGMENT_SHADER,fragment));gl.linkProgram(p);if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw Error(gl.getProgramInfoLog(p));return p;}
@@ -92,7 +98,7 @@ function setupGL(){gl=view.getContext('webgl',{alpha:false,antialias:false,prese
 function resetBuffers(){if(!gl)return;gl.clearColor(0,0,0,1);for(const f of [currentFbo,...feedbackFbos]){gl.bindFramebuffer(gl.FRAMEBUFFER,f);gl.clear(gl.COLOR_BUFFER_BIT);}for(const t of historyTextures){gl.bindFramebuffer(gl.FRAMEBUFFER,currentFbo);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,t,0);gl.clear(gl.COLOR_BUFFER_BIT);}gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,currentTexture,0);gl.bindFramebuffer(gl.FRAMEBUFFER,null);historyCount=0;ringIndex=0;feedbackIndex=0;frameIndex=0;}
 function render(t){raf=requestAnimationFrame(render);if(!running||!gl||video.readyState<2||t-lastFrame<1000/FPS-2)return;lastFrame=t;frameIndex++;
   try{gl.bindTexture(gl.TEXTURE_2D,videoTexture);gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,video);
-  gl.bindFramebuffer(gl.FRAMEBUFFER,currentFbo);gl.useProgram(progTint);bindTex(0,videoTexture,'video',progTint);gl.uniform3fv(gl.getUniformLocation(progTint,'a'),a);gl.uniform3fv(gl.getUniformLocation(progTint,'b'),b);gl.uniform1f(gl.getUniformLocation(progTint,'balance'),balance);gl.uniform1f(gl.getUniformLocation(progTint,'aspectInput'),video.videoWidth/video.videoHeight);gl.uniform1f(gl.getUniformLocation(progTint,'aspectCanvas'),view.width/view.height);draw(progTint);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,currentFbo);gl.useProgram(progTint);bindTex(0,videoTexture,'video',progTint);gl.uniform3fv(gl.getUniformLocation(progTint,'a'),a);gl.uniform3fv(gl.getUniformLocation(progTint,'b'),b);gl.uniform1f(gl.getUniformLocation(progTint,'balance'),balance);gl.uniform1f(gl.getUniformLocation(progTint,'aspectInput'),video.videoWidth/video.videoHeight);gl.uniform1f(gl.getUniformLocation(progTint,'aspectCanvas'),view.width/view.height);gl.uniform1f(gl.getUniformLocation(progTint,'zoom'),zoom);draw(progTint);
   const index1=(ringIndex-3+HISTORY)%HISTORY,index2=(ringIndex-8+HISTORY)%HISTORY;
   const old1=historyCount>=3?historyTextures[index1]:currentTexture,old2=historyCount>=8?historyTextures[index2]:currentTexture;
   displayMode+=( (mode==='psy'?1:0)-displayMode)*.12;
@@ -107,19 +113,44 @@ function render(t){raf=requestAnimationFrame(render);if(!running||!gl||video.rea
 }
 function fmt(seconds){const n=Math.floor(seconds);return `${String(Math.floor(n/60)).padStart(2,'0')}:${String(n%60).padStart(2,'0')}`;}
 function toast(msg,ms=3000){const el=$('toast');el.textContent=msg;el.classList.add('shown');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('shown'),ms);}
-async function startCamera(){if(!navigator.mediaDevices?.getUserMedia){toast('La cámara necesita HTTPS y Safari/Chrome actualizado.',6500);return;}try{if(stream)stream.getTracks().forEach(t=>t.stop());stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:facing},width:{ideal:1280},height:{ideal:1920},frameRate:{ideal:30,max:30}}});video.srcObject=stream;await video.play();if(!gl)setupGL();else resetBuffers();running=true;$('start-sheet').classList.add('hidden');$('hint').style.opacity='1';setTimeout(()=>$('hint').style.opacity='0',5000);if(!raf)raf=requestAnimationFrame(render);}catch(e){console.error(e);toast('No se pudo abrir la cámara. Revisá los permisos de Safari. '+e.message,8000);}}
+async function startCamera(){if(!navigator.mediaDevices?.getUserMedia){toast('La cámara necesita HTTPS y Safari/Chrome actualizado.',6500);return;}try{if(stream)stream.getTracks().forEach(t=>t.stop());stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:facing},width:{ideal:1080},height:{ideal:1920},aspectRatio:{ideal:9/16},frameRate:{ideal:30,max:30}}});video.srcObject=stream;await video.play();if(!gl)setupGL();else resetBuffers();running=true;$('start-sheet').classList.add('hidden');$('hint').style.opacity='1';setTimeout(()=>$('hint').style.opacity='0',5000);if(!raf)raf=requestAnimationFrame(render);}catch(e){console.error(e);toast('No se pudo abrir la cámara. Revisá los permisos de Safari. '+e.message,8000);}}
 function hexRgb(s){return [1,3,5].map(i=>parseInt(s.slice(i,i+2),16)/255)}
 function setTrail(v){trail=Math.max(0,Math.min(1,v));$('trail-number').textContent=`${Math.round(trail*100)}%`;$('trail-stat').textContent=`TRAIL ${Math.round(trail*100)}%`;$('trail-track').style.setProperty('--percent',`${trail*100}%`);}
 function setBalance(v){balance=Math.max(0,Math.min(1,v));$('color-number').textContent=`COLOR ${Math.round(balance*100)}%`;$('color-track').style.setProperty('--percent',`${balance*100}%`);}
 function showIndicator(which){const id=which==='trail'?'trail-ind':'color-ind';$(id).classList.add('visible');clearTimeout(indicatorTimer);indicatorTimer=setTimeout(()=>{$('trail-ind').classList.remove('visible');$('color-ind').classList.remove('visible')},1100);}
+function setZoom(v){zoom=v===2?2:1;const el=$('zoom');el.textContent=zoom+'×';el.classList.toggle('active',zoom===2);el.setAttribute('aria-pressed',String(zoom===2));el.setAttribute('aria-label',zoom===2?'Desactivar zoom, volver a uno por':'Activar zoom dos aumentos');resetBuffers();}
 function setMode(m){mode=m;$('mode-eco').classList.toggle('active',m==='eco');$('mode-psy').classList.toggle('active',m==='psy');$('mode-eco').setAttribute('aria-pressed',String(m==='eco'));$('mode-psy').setAttribute('aria-pressed',String(m==='psy'));}
-async function toggleRecording(){if(recording){stopRecording();return;}if(!running){toast('Abrí la cámara primero.');return;}if(!view.captureStream||typeof MediaRecorder==='undefined'){toast('Este navegador no permite grabar el canvas. Probá Safari actualizado o Chrome.',6500);return;}try{let cap=view.captureStream(FPS);const candidates=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];const type=candidates.find(t=>MediaRecorder.isTypeSupported(t));const options={videoBitsPerSecond:5000000};if(type)options.mimeType=type;mediaRecorder=new MediaRecorder(cap,options);chunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mediaRecorder.onerror=()=>toast('Hubo un problema al grabar.',5000);mediaRecorder.onstop=()=>{const mime=mediaRecorder.mimeType||type||'video/webm';lastBlob=new Blob(chunks,{type:mime});if(lastURL)URL.revokeObjectURL(lastURL);lastURL=URL.createObjectURL(lastBlob);$('save').disabled=!lastBlob.size;toast(lastBlob.size?'Grabación lista. Tocá ↓ para guardarla.':'La grabación quedó vacía.',4500);cap.getTracks().forEach(t=>t.stop());};mediaRecorder.start(1000);recording=true;recStart=performance.now();$('record').classList.add('recording');$('record').setAttribute('aria-label','Detener grabación');$('status').classList.add('rec');$('status').textContent='● REC  00:00';}catch(e){console.error(e);toast('No se pudo iniciar la grabación: '+e.message,6500);}}
+async function toggleRecording(){if(recording){stopRecording();return;}if(!running){toast('Abrí la cámara primero.');return;}if(!view.captureStream||typeof MediaRecorder==='undefined'){toast('Este navegador no permite grabar el canvas. Probá Safari actualizado o Chrome.',6500);return;}try{let cap=view.captureStream(FPS);const candidates=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];const type=candidates.find(t=>MediaRecorder.isTypeSupported(t));const options={videoBitsPerSecond:5000000};if(type)options.mimeType=type;mediaRecorder=new MediaRecorder(cap,options);chunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mediaRecorder.onerror=()=>toast('Hubo un problema al grabar.',5000);mediaRecorder.onstop=()=>{const mime=mediaRecorder.mimeType||type||'video/webm';lastBlob=new Blob(chunks,{type:mime});lastKind='video';$('save').title='Guardar video';$('save').setAttribute('aria-label','Guardar video');if(lastURL)URL.revokeObjectURL(lastURL);lastURL=URL.createObjectURL(lastBlob);$('save').disabled=!lastBlob.size;toast(lastBlob.size?'Video listo. Tocá ↓ para guardarlo.':'La grabación quedó vacía.',4500);cap.getTracks().forEach(t=>t.stop());};mediaRecorder.start(1000);recording=true;recStart=performance.now();$('record').classList.add('recording');$('record').setAttribute('aria-label','Detener grabación');$('status').classList.add('rec');$('status').textContent='● REC  00:00';}catch(e){console.error(e);toast('No se pudo iniciar la grabación: '+e.message,6500);}}
+async function takePhoto(){
+  if(!running||!gl||!frameIndex){toast('Abrí la cámara primero.');return;}
+  try{
+    // Read the fully processed framebuffer, not the raw camera stream. WebGL pixels are bottom-up.
+    const w=view.width,h=view.height;
+    const raw=new Uint8Array(w*h*4);
+    gl.bindFramebuffer(gl.FRAMEBUFFER,feedbackFbos[feedbackIndex]);
+    gl.readPixels(0,0,w,h,gl.RGBA,gl.UNSIGNED_BYTE,raw);
+    gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+    const output=document.createElement('canvas');output.width=w;output.height=h;
+    const ctx=output.getContext('2d');if(!ctx)throw Error('Canvas 2D no disponible');
+    const pixels=ctx.createImageData(w,h);
+    for(let y=0;y<h;y++)pixels.data.set(raw.subarray((h-y-1)*w*4,(h-y)*w*4),y*w*4);
+    ctx.putImageData(pixels,0,0);
+    const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));
+    if(!blob)throw Error('No se pudo generar PNG');
+    lastBlob=blob;lastKind='photo';
+    if(lastURL)URL.revokeObjectURL(lastURL);
+    lastURL=URL.createObjectURL(lastBlob);
+    $('save').disabled=false;$('save').title='Guardar foto';$('save').setAttribute('aria-label','Guardar foto');
+    $('photo').classList.add('flash');setTimeout(()=>$('photo').classList.remove('flash'),220);
+    toast('Foto lista con los efectos. Tocá ↓ para guardarla.',4500);
+  }catch(e){console.error(e);toast('No se pudo sacar la foto: '+e.message,5500);}
+}
 function stopRecording(){if(!recording)return;recording=false;$('record').classList.remove('recording');$('record').setAttribute('aria-label','Empezar a grabar');$('status').classList.remove('rec');$('status').textContent='PROCESANDO VIDEO…';try{if(mediaRecorder?.state!=='inactive')mediaRecorder.stop();}catch(e){toast(e.message)}setTimeout(()=>{if(!recording)$('status').textContent='TOCÁ PARA GRABAR'},1200);}
-async function save(){if(!lastBlob)return;const ext=lastBlob.type.includes('mp4')?'mp4':'webm';const name=`rastro-${new Date().toISOString().replace(/[:.]/g,'-')}.${ext}`;const file=new File([lastBlob],name,{type:lastBlob.type});try{if(navigator.canShare?.({files:[file]})&&navigator.share){await navigator.share({files:[file],title:'RASTRO'});return;}}catch(e){if(e.name==='AbortError')return;}const link=document.createElement('a');link.href=lastURL;link.download=name;document.body.appendChild(link);link.click();link.remove();toast('Si Safari abre el video, usá Compartir → Guardar en Archivos.',5500);}
+async function save(){if(!lastBlob)return;const ext=lastKind==='photo'?'png':lastBlob.type.includes('mp4')?'mp4':'webm';const name=`reojo-${new Date().toISOString().replace(/[:.]/g,'-')}.${ext}`;const file=new File([lastBlob],name,{type:lastBlob.type});try{if(navigator.canShare?.({files:[file]})&&navigator.share){await navigator.share({files:[file],title:lastKind==='photo'?'Foto REOJO':'Video REOJO'});return;}}catch(e){if(e.name==='AbortError')return;}const link=document.createElement('a');link.href=lastURL;link.download=name;document.body.appendChild(link);link.click();link.remove();toast(lastKind==='photo'?'Si Safari abre la foto, usá Compartir → Guardar imagen.':'Si Safari abre el video, usá Compartir → Guardar en Archivos.',5500);}
 let gesture=null;stage.addEventListener('pointerdown',e=>{if(!$('start-sheet').classList.contains('hidden'))return;const rect=stage.getBoundingClientRect();const x=(e.clientX-rect.left)/rect.width,y=(e.clientY-rect.top)/rect.height;gesture={kind:x>.77?'trail':'color',startX:e.clientX,startY:e.clientY,startValue:x>.77?trail:balance,moved:false};stage.setPointerCapture(e.pointerId);});stage.addEventListener('pointermove',e=>{if(!gesture)return;const dx=e.clientX-gesture.startX,dy=e.clientY-gesture.startY;if(Math.abs(dx)+Math.abs(dy)>3)gesture.moved=true;if(gesture.kind==='trail'){setTrail(gesture.startValue-dy/(stage.clientHeight*.65));showIndicator('trail')}else{setBalance(gesture.startValue+dx/(stage.clientWidth*.8));showIndicator('color')}});function clearGesture(){gesture=null}stage.addEventListener('pointerup',clearGesture);stage.addEventListener('pointercancel',clearGesture);
-$('start').onclick=startCamera;$('mode-eco').onclick=()=>setMode('eco');$('mode-psy').onclick=()=>setMode('psy');$('record').onclick=toggleRecording;$('save').onclick=save;
-$('flip').onclick=async()=>{if(recording){toast('Detené la grabación antes de cambiar de cámara.');return;}facing=facing==='environment'?'user':'environment';await startCamera()};
-$('reset').onclick=()=>{setTrail(.35);setBalance(.5);setMode('eco');resetBuffers();toast('Controles restablecidos.');};
+$('zoom').onclick=()=>setZoom(zoom===1?2:1);$('start').onclick=startCamera;$('mode-eco').onclick=()=>setMode('eco');$('mode-psy').onclick=()=>setMode('psy');$('record').onclick=toggleRecording;$('photo').onclick=takePhoto;$('save').onclick=save;
+$('flip').onclick=async()=>{if(recording){toast('Detené la grabación antes de cambiar de cámara.');return;}facing=facing==='environment'?'user':'environment';setZoom(1);await startCamera()};
+$('reset').onclick=()=>{setTrail(.35);setBalance(.5);setMode('eco');setZoom(1);toast('Controles restablecidos.');};
 $('colorA').oninput=e=>{a=hexRgb(e.target.value);$('swatchA').style.setProperty('--swatch',e.target.value);$('color-track').style.setProperty('--a',e.target.value)};
 $('colorB').oninput=e=>{b=hexRgb(e.target.value);$('swatchB').style.setProperty('--swatch',e.target.value);$('color-track').style.setProperty('--b',e.target.value)};
 $('color-track').style.setProperty('--a','#6654e8');$('color-track').style.setProperty('--b','#ff9977');setTrail(.35);setBalance(.5);
