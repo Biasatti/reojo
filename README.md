@@ -1,48 +1,17 @@
-# REOJO / 006
+# REOJO / 009 — FX
 
-Prototipo PWA para iPhone de cámara experimental con foto, video, formatos variables, modos ECO/PSY, RGB reactivo al movimiento y duotono opcional. Está hecho en HTML, CSS, JavaScript y WebGL, y procesa la imagen en el dispositivo.
+Versión experimental para iPhone. Incluye la galería temporal de v8, cámara frontal/trasera, fotos y video sin audio, selector 9:16 / 4:5 / 16:9, ECO / PSY, control gestual de trail y duotono.
 
-## Para probar en iPhone
+## Nuevo en 009
 
-1. Subí **todo el contenido de esta carpeta** a un repositorio público de GitHub.
-2. En GitHub, abrí **Settings → Pages → Deploy from a branch → main / (root)**.
-3. Abrí la URL HTTPS publicada con **Safari** en tu iPhone.
-4. Tocá **ABRIR CÁMARA** y autorizá el permiso.
-5. Opcional: Compartir → **Agregar a pantalla de inicio**.
+- Los dos colores y el botón **DUO · ON/OFF** siguen en la pantalla principal.
+- Nuevo botón visible **FX** en la franja superior. Abre un panel inferior con vista parcial de la cámara.
+- **GRAIN / RUIDO**: slider de 0 a 100%, por defecto 25%. El ruido se incorpora a fotos y videos; no es una simple superposición visual.
+- **RGB REACTIVO**: ON/OFF. El RGB aparece en las regiones de movimiento y puede combinarse con duotono o color natural.
+- Tocar fuera del panel o la flecha hacia abajo lo cierra. Reset restaura grain 25% y RGB ON.
 
-> La cámara requiere HTTPS. Abrir `index.html` desde Archivos o con `file://` no sirve.
+## Instalación
 
-## Uso actual
+Subí el contenido del ZIP a la raíz del repositorio GitHub Pages. Abrí la dirección HTTPS desde Safari y autorizá la cámara. Podés agregarla a la pantalla de inicio. Se usa almacenamiento local de Safari (IndexedDB) para guardar capturas temporalmente hasta 24 horas, pero no es infalible; exportá cualquier video importante. Si la actualización no aparece, cerrá y reabrí la PWA.
 
-- Deslizamiento horizontal sobre la imagen: balance del duotono.
-- Deslizamiento vertical en el sector derecho: intensidad de estela.
-- **ECO**: rastros más legibles, tipo eco de movimiento.
-- **PSY**: persistencia más abstracta y acumulativa.
-- Dos círculos de color: elegir color A y color B del duotono.
-- Botón **ON/OFF** junto a “DUOTONO”: prender o apagar el duotono.
-  - **ON**: la imagen usa el mapeo de dos colores.
-  - **OFF**: la imagen conserva sus colores naturales, pero siguen funcionando ECO/PSY, trail y RGB reactivo.
-- Botón central: grabar / detener video procesado (sin audio por ahora).
-- Botón de cámara: sacar foto PNG con el efecto aplicado.
-- Flecha hacia abajo: guardar o compartir la última captura.
-- Botón superior de formato: alterna **9:16 → 4:5 → 16:9**.
-- Botón superior ↺: restablecer controles.
-- Botón superior ⟳: cambiar entre cámara trasera y frontal.
-
-## Novedades en 006
-
-- Se agregó interruptor **DUOTONO ON/OFF**.
-- El duotono ya no es obligatorio: ahora se puede probar el tratamiento **RGB reactivo** sobre color natural.
-- El reinicio de controles vuelve a dejar el duotono activado.
-- Cache de la PWA actualizado a `reojo-v6`.
-
-## Limitaciones actuales
-
-- No hay grabación con micrófono en esta versión.
-- La grabación depende de `captureStream` y `MediaRecorder`; algunos iPhone/Safari pueden limitar formatos o compatibilidad.
-- La calidad y fluidez dependen del dispositivo.
-- No se guardan ajustes entre sesiones.
-
-## Próximo ajuste pendiente
-
-- Confirmar en iPhone real el comportamiento de **DUOTONO OFF + RGB reactivo** y evaluar luego audio, botón sorpresa y “congelar el tiempo”.
+**Pendiente de prueba en iPhone real:** calidad del nuevo grano, rendimiento, exportación y disposición del panel FX.

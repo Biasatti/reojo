@@ -24,7 +24,7 @@
     #grain{position:absolute;inset:0;opacity:.12;pointer-events:none;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");}
     .top{position:absolute;top:0;left:0;right:0;padding:calc(env(safe-area-inset-top) + 17px) 19px 18px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(6,6,13,.72),transparent);pointer-events:none}
     .brand{display:flex;align-items:center;gap:10px;letter-spacing:.22em;font-size:11px;font-weight:650}.dot{width:8px;height:8px;border-radius:100%;background:#d0b2ff;box-shadow:0 0 12px #bc8cff}
-    .top-actions{display:flex;gap:8px;pointer-events:auto}.circle-btn{border:1px solid #ffffff28;background:#0a091473;color:var(--fg);width:39px;height:39px;display:grid;place-items:center;border-radius:50%;font-size:20px;backdrop-filter:blur(15px)}
+    .top-actions{display:flex;gap:7px;pointer-events:auto}.fx-launch{border:1px solid #d9c5ff70;background:#241b35b3;color:#f5eafb;height:39px;padding:0 12px;border-radius:22px;font-size:11px;font-weight:750;letter-spacing:.08em;backdrop-filter:blur(15px)}.circle-btn{border:1px solid #ffffff28;background:#0a091473;color:var(--fg);width:39px;height:39px;display:grid;place-items:center;border-radius:50%;font-size:20px;backdrop-filter:blur(15px)}
     .format-toggle{position:absolute;right:18px;top:calc(env(safe-area-inset-top) + 132px);z-index:4;min-width:66px;height:43px;padding:0 10px;border-radius:22px;border:1px solid #ffffff62;background:#171324bd;color:#f6f0ff;font-size:14px;font-weight:750;letter-spacing:.02em;backdrop-filter:blur(16px)}
     .format-toggle.active{background:#f1eafa;color:#22162c;border-color:#fff}
     .mode-panel{position:absolute;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top) + 69px);display:flex;background:rgba(15,12,25,.65);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:4px;backdrop-filter:blur(16px);z-index:2}
@@ -36,9 +36,9 @@
     .track-v{width:3px;height:100%;min-height:80px;max-height:220px;border-radius:5px;background:#ffffff4a;position:relative}.track-v:after{content:"";position:absolute;left:-3px;right:-3px;bottom:0;height:var(--percent,35%);background:#efe5ff;border-radius:6px;box-shadow:0 0 12px #c9b4fb}
     .color-ind{left:18%;right:18%;bottom:175px;flex-direction:column}.track-h{width:100%;height:3px;background:linear-gradient(90deg,var(--a),var(--b));border-radius:8px;position:relative}.track-h:after{content:"";position:absolute;left:var(--percent,50%);top:50%;width:12px;height:12px;border:2px solid #fff;background:#14111a;border-radius:50%;transform:translate(-50%,-50%)}
     .bottom{position:absolute;bottom:0;left:0;right:0;padding:45px 24px calc(env(safe-area-inset-bottom) + 22px);background:linear-gradient(0deg,rgba(5,4,12,.93),rgba(6,5,13,.6) 68%,transparent);pointer-events:none}
-    .control-row{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;pointer-events:auto}
-    .colors{display:flex;align-items:center;gap:10px}.swatch{width:31px;height:31px;border-radius:50%;border:2px solid #ffffff9a;background:var(--swatch);position:relative;overflow:hidden}.swatch input{position:absolute;inset:-15px;min-width:65px;min-height:65px;opacity:0;cursor:pointer}
-    .row-label{font-size:10px;color:#dad4e5;letter-spacing:.14em}.duo-toggle{border:1px solid #ffffff38;background:#ffffff10;color:#f3eef7;border-radius:999px;padding:8px 12px;font-size:10px;font-weight:750;letter-spacing:.12em;min-width:84px}.duo-toggle.active{background:#efe7fb;color:#22182c;border-color:#fff}.duo-toggle.off{background:#120f18;color:#c8bfd7;border-color:#ffffff26}.range-label{font-size:11px;color:#ddd6e5;letter-spacing:.12em;text-align:right;min-width:75px}
+    .control-row{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:18px;pointer-events:auto;min-width:0}
+    .colors{display:flex;align-items:center;gap:8px;min-width:0;flex-shrink:0}.swatch{width:31px;height:31px;flex:0 0 31px;border-radius:50%;border:2px solid #ffffff9a;background:var(--swatch);position:relative;overflow:hidden}.swatch input{position:absolute;inset:-15px;min-width:65px;min-height:65px;opacity:0;cursor:pointer}
+    .duo-toggle{border:1px solid #ffffff38;background:#ffffff10;color:#f3eef7;border-radius:999px;padding:9px 10px;font-size:10px;font-weight:750;letter-spacing:.06em;min-width:85px;white-space:nowrap;flex-shrink:0}.duo-toggle.active{background:#efe7fb;color:#22182c;border-color:#fff}.duo-toggle.off{background:#120f18;color:#c8bfd7;border-color:#ffffff26}.range-label{font-size:10px;color:#ddd6e5;letter-spacing:.08em;text-align:right;min-width:66px;white-space:nowrap;flex-shrink:0}
     .record-row{display:flex;align-items:center;justify-content:space-between;pointer-events:auto}.secondary{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:#ffffff14;border:1px solid #ffffff30;color:#f5f0f9;font-size:20px}
     #record{width:77px;height:77px;border-radius:50%;background:#f7f1fa;border:0;display:grid;place-items:center;box-shadow:0 2px 24px #0006}
     #record span{width:59px;height:59px;background:#f36575;border-radius:50%;transition:all .2s}
@@ -53,6 +53,32 @@
     .sheet{position:absolute;inset:0;background:#03030ac4;z-index:10;display:flex;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(14px)}
     .sheet.hidden{display:none}.sheet-card{width:100%;max-width:390px;background:#1b1825;border:1px solid #ffffff24;border-radius:24px;padding:26px;text-align:center;box-shadow:0 20px 50px #0005}
     .sheet h1{font-size:24px;font-weight:550;letter-spacing:.12em;margin:10px 0 15px}.sheet p{font-size:14px;line-height:1.55;color:#c0bacc;margin:0 0 20px}.primary{width:100%;border:0;border-radius:14px;padding:15px;background:#e9dfff;color:#1a1423;font-weight:650;letter-spacing:.04em}.small-note{font-size:11px!important;margin:14px 0 0!important;color:#9590a5!important}
+    .fx-backdrop{position:absolute;inset:0;background:#0806118c;z-index:12;backdrop-filter:blur(3px)}
+    .fx-backdrop.hidden,.fx-sheet.hidden{display:none}
+    .fx-sheet{position:absolute;z-index:13;bottom:0;left:0;right:0;max-height:72%;overflow-y:auto;overscroll-behavior:contain;background:#1d1826;border:1px solid #ffffff2c;border-bottom:0;border-radius:25px 25px 0 0;padding:14px 22px calc(env(safe-area-inset-bottom) + 22px);box-shadow:0 -20px 60px #0008;touch-action:pan-y}
+    .fx-handle{width:42px;height:4px;background:#766e83;border-radius:8px;margin:0 auto 18px}
+    .fx-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.fx-head h2{font-size:20px;letter-spacing:.14em;margin:0}.fx-close{background:#ffffff13;border:1px solid #ffffff33;color:#f7efff;border-radius:50%;width:36px;height:36px;font-size:22px;display:grid;place-items:center}
+    .fx-setting{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:16px 0}.fx-name{font-size:13px;font-weight:600;color:#f5eefa}.fx-description{font-size:11px;color:#b8afc6;margin-top:6px;line-height:1.45}.fx-number{font-size:12px;color:#e2d6ee;font-variant-numeric:tabular-nums}
+    .fx-slider{width:100%;accent-color:#c8a6ed;height:30px;touch-action:pan-x}.fx-toggle{font-size:11px;font-weight:800;letter-spacing:.08em;border-radius:30px;min-width:67px;padding:11px 14px;background:#f2eafb;color:#281a34;border:1px solid #ffffff9b}.fx-toggle.off{background:#17121f;color:#c1b6cd;border-color:#ffffff3d}
+    .fx-separator{height:1px;background:#ffffff19;margin:21px 0}
+    .library-sheet{position:absolute;inset:0;z-index:20;background:#09070eea;backdrop-filter:blur(20px);display:flex;flex-direction:column;padding:calc(env(safe-area-inset-top) + 23px) 20px calc(env(safe-area-inset-bottom) + 24px);overflow:hidden}
+    .library-sheet.hidden{display:none}
+    .library-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .library-head h2{font-size:21px;font-weight:650;letter-spacing:.08em;margin:0}
+    .library-close{border:1px solid #ffffff33;background:#ffffff13;color:white;border-radius:50%;width:40px;height:40px;font-size:24px}
+    .library-intro{font-size:12px;line-height:1.5;color:#bcb4ca;margin:0 0 20px}
+    .library-list{overflow-y:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:13px;flex:1;padding-bottom:20px}
+    .library-item{display:flex;align-items:center;gap:12px;padding:12px;background:#ffffff0a;border:1px solid #ffffff20;border-radius:16px;min-width:0}
+    .library-preview{width:95px;height:110px;object-fit:contain;border-radius:10px;background:#09070e;flex-shrink:0}
+    .library-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:7px}
+    .library-name{font-size:12px;font-weight:650;color:#f8f1ff}
+    .library-date{font-size:11px;color:#b7afc7}
+    .library-actions{display:flex;flex-wrap:wrap;gap:7px}
+    .library-actions button{border:1px solid #ffffff44;color:#eee7fa;background:#ffffff14;border-radius:9px;padding:9px 11px;font-size:11px;font-weight:600}
+    .library-actions button.primary-action{background:#e8ddff;color:#22182d;border-color:#e8ddff}
+    .library-empty{padding:45px 15px;text-align:center;color:#aea5bc;font-size:13px;line-height:1.7}
+    .library-count{position:absolute;right:15px;top:-5px;background:#ed8aa7;color:#21131d;border-radius:20px;padding:1px 5px;font-size:10px;font-weight:800;min-width:17px}
+    #gallery{position:relative}
     .result-link{display:block;color:#e8ddff;font-size:13px;margin-top:15px;overflow-wrap:anywhere}.hide{display:none!important}
     @media(min-width:700px){#app{max-width:450px;left:50%;transform:translateX(-50%);box-shadow:0 0 0 100vw #08080e,0 0 60px #000}}
   </style>
@@ -65,15 +91,30 @@
     <div id="trail-ind" class="indicator trail-ind"><span id="trail-number">35%</span><div class="track-v" id="trail-track"></div><span>TRAIL</span></div>
     <div id="color-ind" class="indicator color-ind"><span id="color-number">COLOR 50%</span><div class="track-h" id="color-track"></div></div>
   </div>
-  <div class="top"><span class="brand"><span class="dot"></span>REOJO <span style="color:#ffffff75;font-size:9px;letter-spacing:.1em">/ 006</span></span><div class="top-actions"><button class="circle-btn" id="reset" title="Restablecer controles" aria-label="Restablecer controles">↺</button><button class="circle-btn" id="flip" aria-label="Cambiar cámara">⟳</button></div></div>
+  <div class="top"><span class="brand"><span class="dot"></span>REOJO <span style="color:#ffffff75;font-size:9px;letter-spacing:.1em">/ 009</span></span><div class="top-actions"><button class="fx-launch" id="fx-open" type="button" aria-label="Abrir ajustes FX" aria-expanded="false" aria-controls="fx-sheet">FX</button><button class="circle-btn" id="reset" title="Restablecer controles" aria-label="Restablecer controles">↺</button><button class="circle-btn" id="flip" aria-label="Cambiar cámara">⟳</button></div></div>
   <button id="format" class="format-toggle" aria-label="Formato actual 9 por 16. Tocar para cambiar" title="Formato de foto y video: 9:16, 4:5, 16:9">9:16</button>
   <div class="mode-panel" role="group" aria-label="Modo de estela"><button id="mode-eco" class="active" aria-pressed="true">ECO</button><button id="mode-psy" aria-pressed="false">PSY</button></div>
   <div class="bottom">
-    <div class="control-row"><div class="colors"><label class="swatch" style="--swatch:#6654e8" id="swatchA" aria-label="Color de sombras"><input id="colorA" type="color" value="#6654e8" aria-label="Elegir color de sombras"></label><label class="swatch" style="--swatch:#ff9977" id="swatchB" aria-label="Color de luces"><input id="colorB" type="color" value="#ff9977" aria-label="Elegir color de luces"></label><span class="row-label">DUOTONO</span><button id="duo-toggle" class="duo-toggle active" type="button" aria-pressed="true" title="Apagar o prender duotono">ON</button></div><span class="range-label" id="trail-stat">TRAIL 35%</span></div>
-    <div class="record-row"><button class="photo-trigger" id="photo" title="Sacar foto" aria-label="Sacar foto"><svg viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button><button id="record" aria-label="Empezar a grabar"><span></span></button><button class="secondary" id="save" title="Guardar última captura" aria-label="Guardar última captura" disabled>↧</button></div>
+    <div class="control-row"><div class="colors"><label class="swatch" style="--swatch:#6654e8" id="swatchA" aria-label="Color de sombras"><input id="colorA" type="color" value="#6654e8" aria-label="Elegir color de sombras"></label><label class="swatch" style="--swatch:#ff9977" id="swatchB" aria-label="Color de luces"><input id="colorB" type="color" value="#ff9977" aria-label="Elegir color de luces"></label><button id="duo-toggle" class="duo-toggle active" type="button" aria-label="Apagar duotono" aria-pressed="true" title="Apagar o prender duotono">DUO · ON</button></div><span class="range-label" id="trail-stat">TRAIL 35%</span></div>
+    <div class="record-row"><button class="photo-trigger" id="photo" title="Sacar foto" aria-label="Sacar foto"><svg viewBox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"/><circle cx="12" cy="13" r="4"/></svg></button><button id="record" aria-label="Empezar a grabar"><span></span></button><button class="secondary" id="gallery" title="Abrir galería temporal" aria-label="Abrir galería temporal">▦<span class="library-count hide" id="gallery-count">0</span></button></div>
     <div id="status" class="bottom-text">TOCÁ PARA GRABAR</div>
   </div>
   <div id="toast" class="toast" role="status"></div>
+  <div id="fx-backdrop" class="fx-backdrop hidden" aria-hidden="true"></div>
+  <section id="fx-sheet" class="fx-sheet hidden" role="dialog" aria-modal="true" aria-label="Ajustes FX">
+    <div class="fx-handle" aria-hidden="true"></div>
+    <div class="fx-head"><h2>FX</h2><button id="fx-close" class="fx-close" type="button" aria-label="Cerrar ajustes FX">⌄</button></div>
+    <div class="fx-setting"><div><div class="fx-name">GRAIN / RUIDO</div><div class="fx-description">Grano fino, más visible en las sombras</div></div><span id="grain-label" class="fx-number">25%</span></div>
+    <input id="grain-slider" class="fx-slider" type="range" min="0" max="100" value="25" aria-label="Intensidad de ruido" />
+    <div class="fx-separator"></div>
+    <div class="fx-setting"><div><div class="fx-name">RGB REACTIVO</div><div class="fx-description">Separación de color donde hay movimiento</div></div><button id="rgb-toggle" class="fx-toggle" type="button" aria-pressed="true">ON</button></div>
+    <p class="fx-description">El duotono y sus colores siguen disponibles directamente en la cámara.</p>
+  </section>
+  <section id="library" class="library-sheet hidden" role="dialog" aria-modal="true" aria-label="Galería temporal de capturas">
+    <div class="library-head"><h2>REOJO / GALERÍA</h2><button class="library-close" id="library-close" aria-label="Cerrar galería">×</button></div>
+    <p class="library-intro">Las capturas se guardan automáticamente en este iPhone durante hasta 24 horas. Para conservarlas, tocá <strong>Guardar</strong>. iOS puede borrar los datos antes si falta espacio o se eliminan los datos del sitio.</p>
+    <div id="library-items" class="library-list"><div class="library-empty">Buscando capturas…</div></div>
+  </section>
   <div id="start-sheet" class="sheet"><div class="sheet-card"><div style="color:#d1baff;font-size:27px">◉</div><h1>REOJO</h1><p>Una cámara para manipular el color y el tiempo. Permití el acceso a la cámara para empezar.</p><button id="start" class="primary">ABRIR CÁMARA</button><p class="small-note">Se necesita HTTPS (por ejemplo, GitHub Pages). El procesamiento ocurre en tu dispositivo.</p></div></div>
 </div>
 <script>
@@ -83,7 +124,64 @@ const $=id=>document.getElementById(id);
 const view=$('view'), video=$('source'),stage=$('stage');
 let gl, progTint,progCompose,quad,videoTexture,currentTexture,historyTextures=[],feedbackTextures=[],currentFbo,feedbackFbos=[],ringIndex=0,historyCount=0,feedbackIndex=0;
 let lastKind=null;let stream=null, facing='environment',running=false,recording=false,mediaRecorder=null,chunks=[],lastBlob=null,lastURL=null,recStart=0,raf=0,lastFrame=0,frameIndex=0;
-let mode='eco',trail=.35,balance=.5,a=[.4,.33,.91],b=[1,.6,.47],duotoneEnabled=true,displayMode=0,indicatorTimer=0,toastTimer=0,formatIndex=0;
+let mode='eco',trail=.35,balance=.5,a=[.4,.33,.91],b=[1,.6,.47],duotoneEnabled=true,displayMode=0,indicatorTimer=0,toastTimer=0,formatIndex=0,grain=.25,rgbEnabled=true;
+const KEEP_MS=24*60*60*1000, DB_NAME='reojo-capturas', DB_STORE='items';
+let dbPromise=null, localItems=[], storageAvailable=true, libraryURLs=[];
+function openCaptureDB(){
+  if(dbPromise)return dbPromise;
+  dbPromise=new Promise((resolve,reject)=>{
+    if(!window.indexedDB){reject(Error('IndexedDB no disponible'));return;}
+    const req=indexedDB.open(DB_NAME,1);
+    req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(DB_STORE))db.createObjectStore(DB_STORE,{keyPath:'id'});};
+    req.onsuccess=()=>resolve(req.result);
+    req.onerror=()=>reject(req.error||Error('No se pudo abrir el almacenamiento'));
+    req.onblocked=()=>reject(Error('La galería está bloqueada por otra pestaña'));
+  }).catch(e=>{storageAvailable=false;dbPromise=null;throw e});
+  return dbPromise;
+}
+async function dbEntries(){const db=await openCaptureDB();return new Promise((resolve,reject)=>{const req=db.transaction(DB_STORE,'readonly').objectStore(DB_STORE).getAll();req.onsuccess=()=>resolve(req.result||[]);req.onerror=()=>reject(req.error);});}
+async function dbPut(item){const db=await openCaptureDB();return new Promise((resolve,reject)=>{const tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).put(item);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||Error('Sin espacio para guardar'));tx.onabort=()=>reject(tx.error||Error('Grabación no almacenada'));});}
+async function dbDelete(id){const db=await openCaptureDB();return new Promise((resolve,reject)=>{const tx=db.transaction(DB_STORE,'readwrite');tx.objectStore(DB_STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
+async function expireEntries(){
+  try{const all=await dbEntries(),now=Date.now();await Promise.all(all.filter(x=>now-x.created>=KEEP_MS).map(x=>dbDelete(x.id)));}
+  catch(e){console.warn('Limpieza galería:',e);}
+}
+async function allCaptures(){
+  try{const items=await dbEntries();return [...items,...localItems].filter(x=>Date.now()-x.created<KEEP_MS).sort((a,b)=>b.created-a.created);}
+  catch(e){return localItems.filter(x=>Date.now()-x.created<KEEP_MS).sort((a,b)=>b.created-a.created);}
+}
+async function updateGalleryCount(){const items=await allCaptures();$('gallery-count').textContent=items.length;$('gallery-count').classList.toggle('hide',items.length===0);}
+function filenameFor(item){const ext=item.kind==='photo'?'png':item.blob.type.includes('mp4')?'mp4':'webm';return `reojo-${new Date(item.created).toISOString().replace(/[:.]/g,'-')}.${ext}`;}
+async function shareCapture(item){const blob=item.blob,name=filenameFor(item);const file=new File([blob],name,{type:blob.type});try{if(navigator.share&&navigator.canShare?.({files:[file]})){await navigator.share({files:[file],title:'Captura REOJO'});return;}}catch(e){if(e.name==='AbortError')return;}
+  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);toast('Si se abre el archivo, usá Compartir para guardarlo.',4500);
+}
+async function persistCapture(blob,kind){
+  if(!blob?.size){toast('La captura quedó vacía; no se pudo guardar.',5500);return false;}
+  const item={id:`${Date.now()}-${Math.random().toString(36).slice(2)}`,created:Date.now(),kind,blob};
+  try{await dbPut(item);toast(kind==='video'?'Video guardado en galería temporal ✓':'Foto guardada en galería temporal ✓',3500);}
+  catch(e){console.warn('Error guardando captura',e);localItems.push(item);toast('No se pudo guardar en el teléfono. Abrí la galería y descargá esta captura antes de salir.',8500);}
+  await updateGalleryCount();return true;
+}
+function clearGalleryURLs(){for(const u of libraryURLs)URL.revokeObjectURL(u);libraryURLs=[];}
+async function renderGallery(){
+  const host=$('library-items');clearGalleryURLs();host.replaceChildren();const items=await allCaptures();
+  if(!items.length){const empty=document.createElement('div');empty.className='library-empty';empty.textContent='Todavía no hay capturas. Grabá un video o sacá una foto; aparecerán acá automáticamente.';host.append(empty);return;}
+  for(const item of items){
+    const row=document.createElement('div');row.className='library-item';
+    const url=URL.createObjectURL(item.blob);libraryURLs.push(url);
+    const media=document.createElement(item.kind==='video'?'video':'img');media.className='library-preview';media.src=url;
+    if(item.kind==='video'){media.controls=true;media.playsInline=true;media.preload='metadata';}
+    const info=document.createElement('div');info.className='library-info';
+    const name=document.createElement('div');name.className='library-name';name.textContent=item.kind==='video'?'VIDEO':'FOTO';
+    const date=document.createElement('div');date.className='library-date';date.textContent=new Date(item.created).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    const actions=document.createElement('div');actions.className='library-actions';
+    const share=document.createElement('button');share.className='primary-action';share.textContent='Guardar';share.onclick=()=>shareCapture(item);
+    const remove=document.createElement('button');remove.textContent='Borrar';remove.onclick=async()=>{if(!confirm('¿Borrar esta captura de REOJO?'))return;try{await dbDelete(item.id)}catch(e){console.warn(e)}localItems=localItems.filter(x=>x.id!==item.id);await updateGalleryCount();await renderGallery();};
+    actions.append(share,remove);info.append(name,date,actions);row.append(media,info);host.append(row);
+  }
+}
+async function openGallery(){ $('library').classList.remove('hidden');await expireEntries();await renderGallery();await updateGalleryCount();}
+function closeGallery(){ $('library').classList.add('hidden');$('library-items').replaceChildren();clearGalleryURLs();}
 const HISTORY=12, FPS=30;
 const FORMATS=[{label:'9:16',width:540,height:960},{label:'4:5',width:768,height:960},{label:'16:9',width:960,height:540}];
 const vs=`attribute vec2 p;varying vec2 uv;void main(){uv=p*.5+.5;gl_Position=vec4(p,0.,1.);}`;
@@ -91,7 +189,7 @@ const fsTint=`precision mediump float;varying vec2 uv;uniform sampler2D video;un
 const fsCompose=`precision highp float;
 varying vec2 uv;
 uniform sampler2D nowTex,old1,old2,feedbackTex;
-uniform float trail,modeMix,grainAmount,frame;
+uniform float trail,modeMix,grainAmount,rgbEnabled,frame;
 uniform vec2 texel;
 void main(){
   vec3 now=texture2D(nowTex,uv).rgb;
@@ -109,14 +207,16 @@ void main(){
   // Micro-aberracion RGB solo en zonas que cambiaron entre fotogramas.
   // Muestras temporales desplazadas apenas unos pixeles para una estela cromatica.
   float motion=smoothstep(.10,.42,max(diff1,diff2*.7));
-  float strength=motion*(.10+.36*trail);
+  float strength=rgbEnabled*motion*(.10+.36*trail);
   vec2 shift=texel*(1.1+2.2*trail);
   vec3 shiftedR=texture2D(old1,clamp(uv+shift,vec2(0.),vec2(1.))).rgb;
   vec3 shiftedB=texture2D(old1,clamp(uv-shift,vec2(0.),vec2(1.))).rgb;
   vec3 chroma=vec3(shiftedR.r,outColor.g,shiftedB.b);
   outColor=mix(outColor,chroma,strength);
   float n=fract(sin(dot(gl_FragCoord.xy+vec2(frame*11.13,frame*7.27),vec2(12.9898,78.233)))*43758.5453)-.5;
-  outColor=clamp(outColor+n*grainAmount,0.,1.);
+  float shade=1.-dot(outColor,vec3(.2126,.7152,.0722));
+  float shadowWeight=.65+.55*shade;
+  outColor=clamp(outColor+n*grainAmount*shadowWeight,0.,1.);
   gl_FragColor=vec4(outColor,1.);
 }`;
 function shader(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw Error(gl.getShaderInfoLog(s));return s;}
@@ -134,9 +234,9 @@ function render(t){raf=requestAnimationFrame(render);if(!running||!gl||video.rea
   const old1=historyCount>=3?historyTextures[index1]:currentTexture,old2=historyCount>=8?historyTextures[index2]:currentTexture;
   displayMode+=( (mode==='psy'?1:0)-displayMode)*.12;
   const dest=1-feedbackIndex;
-  gl.bindFramebuffer(gl.FRAMEBUFFER,feedbackFbos[dest]);gl.useProgram(progCompose);bindTex(0,currentTexture,'nowTex',progCompose);bindTex(1,old1,'old1',progCompose);bindTex(2,old2,'old2',progCompose);bindTex(3,feedbackTextures[feedbackIndex],'feedbackTex',progCompose);gl.uniform1f(gl.getUniformLocation(progCompose,'trail'),trail);gl.uniform1f(gl.getUniformLocation(progCompose,'modeMix'),displayMode);gl.uniform1f(gl.getUniformLocation(progCompose,'grainAmount'),.055);gl.uniform1f(gl.getUniformLocation(progCompose,'frame'),frameIndex);gl.uniform2f(gl.getUniformLocation(progCompose,'texel'),1/view.width,1/view.height);draw(progCompose);feedbackIndex=dest;
+  gl.bindFramebuffer(gl.FRAMEBUFFER,feedbackFbos[dest]);gl.useProgram(progCompose);bindTex(0,currentTexture,'nowTex',progCompose);bindTex(1,old1,'old1',progCompose);bindTex(2,old2,'old2',progCompose);bindTex(3,feedbackTextures[feedbackIndex],'feedbackTex',progCompose);gl.uniform1f(gl.getUniformLocation(progCompose,'trail'),trail);gl.uniform1f(gl.getUniformLocation(progCompose,'modeMix'),displayMode);gl.uniform1f(gl.getUniformLocation(progCompose,'grainAmount'),grain*.22);gl.uniform1f(gl.getUniformLocation(progCompose,'rgbEnabled'),rgbEnabled?1:0);gl.uniform1f(gl.getUniformLocation(progCompose,'frame'),frameIndex);gl.uniform2f(gl.getUniformLocation(progCompose,'texel'),1/view.width,1/view.height);draw(progCompose);feedbackIndex=dest;
   // Copy composited output to visible canvas using a framebuffer blit-compatible textured quad.
-  gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.useProgram(progCompose);bindTex(0,feedbackTextures[feedbackIndex],'nowTex',progCompose);bindTex(1,feedbackTextures[feedbackIndex],'old1',progCompose);bindTex(2,feedbackTextures[feedbackIndex],'old2',progCompose);bindTex(3,feedbackTextures[feedbackIndex],'feedbackTex',progCompose);gl.uniform1f(gl.getUniformLocation(progCompose,'trail'),0);gl.uniform1f(gl.getUniformLocation(progCompose,'modeMix'),0);gl.uniform1f(gl.getUniformLocation(progCompose,'grainAmount'),0);gl.uniform2f(gl.getUniformLocation(progCompose,'texel'),1/view.width,1/view.height);draw(progCompose);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.useProgram(progCompose);bindTex(0,feedbackTextures[feedbackIndex],'nowTex',progCompose);bindTex(1,feedbackTextures[feedbackIndex],'old1',progCompose);bindTex(2,feedbackTextures[feedbackIndex],'old2',progCompose);bindTex(3,feedbackTextures[feedbackIndex],'feedbackTex',progCompose);gl.uniform1f(gl.getUniformLocation(progCompose,'trail'),0);gl.uniform1f(gl.getUniformLocation(progCompose,'modeMix'),0);gl.uniform1f(gl.getUniformLocation(progCompose,'grainAmount'),0);gl.uniform1f(gl.getUniformLocation(progCompose,'rgbEnabled'),0);gl.uniform2f(gl.getUniformLocation(progCompose,'texel'),1/view.width,1/view.height);draw(progCompose);
   // Update video history from current tint frame after displaying it.
   gl.bindFramebuffer(gl.FRAMEBUFFER,currentFbo);gl.bindTexture(gl.TEXTURE_2D,historyTextures[ringIndex]);gl.copyTexSubImage2D(gl.TEXTURE_2D,0,0,0,0,0,view.width,view.height);ringIndex=(ringIndex+1)%HISTORY;historyCount=Math.min(HISTORY,historyCount+1);
   if(recording)$('status').textContent=`● REC  ${fmt((performance.now()-recStart)/1000)}`;
@@ -148,7 +248,11 @@ async function startCamera(){if(!navigator.mediaDevices?.getUserMedia){toast('La
 function hexRgb(s){return [1,3,5].map(i=>parseInt(s.slice(i,i+2),16)/255)}
 function setTrail(v){trail=Math.max(0,Math.min(1,v));$('trail-number').textContent=`${Math.round(trail*100)}%`;$('trail-stat').textContent=`TRAIL ${Math.round(trail*100)}%`;$('trail-track').style.setProperty('--percent',`${trail*100}%`);}
 function setBalance(v){balance=Math.max(0,Math.min(1,v));$('color-number').textContent=`COLOR ${Math.round(balance*100)}%`;$('color-track').style.setProperty('--percent',`${balance*100}%`);}
-function setDuotone(enabled,{silent=false}={}){duotoneEnabled=!!enabled;const btn=$('duo-toggle');btn.textContent=duotoneEnabled?'ON':'OFF';btn.classList.toggle('active',duotoneEnabled);btn.classList.toggle('off',!duotoneEnabled);btn.setAttribute('aria-pressed',String(duotoneEnabled));btn.setAttribute('aria-label',duotoneEnabled?'Apagar duotono':'Prender duotono');if(!silent)toast(duotoneEnabled?'Duotono activado.':'Duotono apagado · Colores naturales.',1600);}
+function setDuotone(enabled,{silent=false}={}){duotoneEnabled=!!enabled;const btn=$('duo-toggle');btn.textContent=duotoneEnabled?'DUO · ON':'DUO · OFF';btn.classList.toggle('active',duotoneEnabled);btn.classList.toggle('off',!duotoneEnabled);btn.setAttribute('aria-pressed',String(duotoneEnabled));btn.setAttribute('aria-label',duotoneEnabled?'Apagar duotono':'Prender duotono');if(!silent)toast(duotoneEnabled?'Duotono activado.':'Duotono apagado · Colores naturales.',1600);}
+function setGrain(v){grain=Math.max(0,Math.min(1,v));$('grain-slider').value=String(Math.round(grain*100));$('grain-label').textContent=Math.round(grain*100)+'%';}
+function setRGB(enabled){rgbEnabled=!!enabled;const el=$('rgb-toggle');el.textContent=rgbEnabled?'ON':'OFF';el.classList.toggle('off',!rgbEnabled);el.setAttribute('aria-pressed',String(rgbEnabled));}
+function openFX(){$('fx-sheet').classList.remove('hidden');$('fx-backdrop').classList.remove('hidden');$('fx-open').setAttribute('aria-expanded','true');$('fx-close').focus();}
+function closeFX(){$('fx-sheet').classList.add('hidden');$('fx-backdrop').classList.add('hidden');$('fx-open').setAttribute('aria-expanded','false');$('fx-open').focus();}
 function showIndicator(which){const id=which==='trail'?'trail-ind':'color-ind';$(id).classList.add('visible');clearTimeout(indicatorTimer);indicatorTimer=setTimeout(()=>{$('trail-ind').classList.remove('visible');$('color-ind').classList.remove('visible')},1100);}
 function updatePreviewSize(){
   const ratio=view.width/view.height;
@@ -175,7 +279,29 @@ function setFormat(index){
   toast('Formato '+target.label+' · Fotos y videos',1600);
 }
 function setMode(m){mode=m;$('mode-eco').classList.toggle('active',m==='eco');$('mode-psy').classList.toggle('active',m==='psy');$('mode-eco').setAttribute('aria-pressed',String(m==='eco'));$('mode-psy').setAttribute('aria-pressed',String(m==='psy'));}
-async function toggleRecording(){if(recording){stopRecording();return;}if(!running){toast('Abrí la cámara primero.');return;}if(!view.captureStream||typeof MediaRecorder==='undefined'){toast('Este navegador no permite grabar el canvas. Probá Safari actualizado o Chrome.',6500);return;}try{let cap=view.captureStream(FPS);const candidates=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];const type=candidates.find(t=>MediaRecorder.isTypeSupported(t));const options={videoBitsPerSecond:5000000};if(type)options.mimeType=type;mediaRecorder=new MediaRecorder(cap,options);chunks=[];mediaRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};mediaRecorder.onerror=()=>toast('Hubo un problema al grabar.',5000);mediaRecorder.onstop=()=>{const mime=mediaRecorder.mimeType||type||'video/webm';lastBlob=new Blob(chunks,{type:mime});lastKind='video';$('save').title='Guardar video';$('save').setAttribute('aria-label','Guardar video');if(lastURL)URL.revokeObjectURL(lastURL);lastURL=URL.createObjectURL(lastBlob);$('save').disabled=!lastBlob.size;toast(lastBlob.size?'Video listo. Tocá ↓ para guardarlo.':'La grabación quedó vacía.',4500);cap.getTracks().forEach(t=>t.stop());};mediaRecorder.start(1000);recording=true;recStart=performance.now();$('record').classList.add('recording');$('record').setAttribute('aria-label','Detener grabación');$('status').classList.add('rec');$('status').textContent='● REC  00:00';}catch(e){console.error(e);toast('No se pudo iniciar la grabación: '+e.message,6500);}}
+async function toggleRecording(){
+  if(recording){stopRecording();return;}
+  if(!running){toast('Abrí la cámara primero.');return;}
+  if(!view.captureStream||typeof MediaRecorder==='undefined'){toast('Este navegador no permite grabar el canvas.',6500);return;}
+  try{
+    const cap=view.captureStream(FPS);
+    const candidates=['video/mp4;codecs=avc1.42E01E','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
+    const type=candidates.find(t=>MediaRecorder.isTypeSupported(t));
+    const options={videoBitsPerSecond:5000000};if(type)options.mimeType=type;
+    const recorder=new MediaRecorder(cap,options);mediaRecorder=recorder;
+    const clipChunks=[];
+    recorder.ondataavailable=e=>{if(e.data.size)clipChunks.push(e.data)};
+    recorder.onerror=e=>{console.error(e);toast('Error de grabación. Revisá la galería.',5500)};
+    recorder.onstop=async()=>{
+      try{const mime=recorder.mimeType||type||'video/webm';const blob=new Blob(clipChunks,{type:mime});await persistCapture(blob,'video');}
+      catch(e){console.error(e);toast('No se pudo finalizar el video.',5500)}
+      finally{cap.getTracks().forEach(t=>t.stop());if(!recording)$('status').textContent='TOCÁ PARA GRABAR';}
+    };
+    recorder.start(1000);recording=true;recStart=performance.now();
+    $('record').classList.add('recording');$('record').setAttribute('aria-label','Detener grabación');
+    $('status').classList.add('rec');$('status').textContent='REC 00:00';
+  }catch(e){console.error(e);toast('No se pudo iniciar la grabación: '+e.message,6500);}
+}
 async function takePhoto(){
   if(!running||!gl||!frameIndex){toast('Abrí la cámara primero.');return;}
   try{
@@ -192,25 +318,23 @@ async function takePhoto(){
     ctx.putImageData(pixels,0,0);
     const blob=await new Promise(resolve=>output.toBlob(resolve,'image/png'));
     if(!blob)throw Error('No se pudo generar PNG');
-    lastBlob=blob;lastKind='photo';
-    if(lastURL)URL.revokeObjectURL(lastURL);
-    lastURL=URL.createObjectURL(lastBlob);
-    $('save').disabled=false;$('save').title='Guardar foto';$('save').setAttribute('aria-label','Guardar foto');
+    await persistCapture(blob,'photo');
     $('photo').classList.add('flash');setTimeout(()=>$('photo').classList.remove('flash'),220);
-    toast('Foto lista con los efectos. Tocá ↓ para guardarla.',4500);
+
   }catch(e){console.error(e);toast('No se pudo sacar la foto: '+e.message,5500);}
 }
-function stopRecording(){if(!recording)return;recording=false;$('record').classList.remove('recording');$('record').setAttribute('aria-label','Empezar a grabar');$('status').classList.remove('rec');$('status').textContent='PROCESANDO VIDEO…';try{if(mediaRecorder?.state!=='inactive')mediaRecorder.stop();}catch(e){toast(e.message)}setTimeout(()=>{if(!recording)$('status').textContent='TOCÁ PARA GRABAR'},1200);}
-async function save(){if(!lastBlob)return;const ext=lastKind==='photo'?'png':lastBlob.type.includes('mp4')?'mp4':'webm';const name=`reojo-${new Date().toISOString().replace(/[:.]/g,'-')}.${ext}`;const file=new File([lastBlob],name,{type:lastBlob.type});try{if(navigator.canShare?.({files:[file]})&&navigator.share){await navigator.share({files:[file],title:lastKind==='photo'?'Foto REOJO':'Video REOJO'});return;}}catch(e){if(e.name==='AbortError')return;}const link=document.createElement('a');link.href=lastURL;link.download=name;document.body.appendChild(link);link.click();link.remove();toast(lastKind==='photo'?'Si Safari abre la foto, usá Compartir → Guardar imagen.':'Si Safari abre el video, usá Compartir → Guardar en Archivos.',5500);}
+function stopRecording(){if(!recording)return;recording=false;$('record').classList.remove('recording');$('record').setAttribute('aria-label','Empezar a grabar');$('status').classList.remove('rec');$('status').textContent='GUARDANDO VIDEO…';try{if(mediaRecorder?.state!=='inactive')mediaRecorder.stop();}catch(e){console.error(e);toast('Error al detener: '+e.message,5500);}}
 let gesture=null;stage.addEventListener('pointerdown',e=>{if(!$('start-sheet').classList.contains('hidden'))return;const rect=stage.getBoundingClientRect();const x=(e.clientX-rect.left)/rect.width,y=(e.clientY-rect.top)/rect.height;gesture={kind:x>.77?'trail':'color',startX:e.clientX,startY:e.clientY,startValue:x>.77?trail:balance,moved:false};stage.setPointerCapture(e.pointerId);});stage.addEventListener('pointermove',e=>{if(!gesture)return;const dx=e.clientX-gesture.startX,dy=e.clientY-gesture.startY;if(Math.abs(dx)+Math.abs(dy)>3)gesture.moved=true;if(gesture.kind==='trail'){setTrail(gesture.startValue-dy/(stage.clientHeight*.65));showIndicator('trail')}else{setBalance(gesture.startValue+dx/(stage.clientWidth*.8));showIndicator('color')}});function clearGesture(){gesture=null}stage.addEventListener('pointerup',clearGesture);stage.addEventListener('pointercancel',clearGesture);
-$('format').onclick=()=>setFormat(formatIndex+1);$('start').onclick=startCamera;$('mode-eco').onclick=()=>setMode('eco');$('mode-psy').onclick=()=>setMode('psy');$('duo-toggle').onclick=()=>setDuotone(!duotoneEnabled);$('record').onclick=toggleRecording;$('photo').onclick=takePhoto;$('save').onclick=save;
+$('format').onclick=()=>setFormat(formatIndex+1);$('start').onclick=startCamera;$('mode-eco').onclick=()=>setMode('eco');$('mode-psy').onclick=()=>setMode('psy');$('duo-toggle').onclick=()=>setDuotone(!duotoneEnabled);$('record').onclick=toggleRecording;$('photo').onclick=takePhoto;$('gallery').onclick=openGallery;$('fx-open').onclick=openFX;$('fx-close').onclick=closeFX;$('fx-backdrop').onclick=closeFX;$('grain-slider').oninput=e=>setGrain(Number(e.target.value)/100);$('rgb-toggle').onclick=()=>setRGB(!rgbEnabled);$('library-close').onclick=closeGallery;
 $('flip').onclick=async()=>{if(recording){toast('Detené la grabación antes de cambiar de cámara.');return;}facing=facing==='environment'?'user':'environment';await startCamera()};
-$('reset').onclick=()=>{setTrail(.35);setBalance(.5);setMode('eco');setDuotone(true,{silent:true});setFormat(0);toast('Controles restablecidos.');};
+$('reset').onclick=()=>{setTrail(.35);setBalance(.5);setMode('eco');setDuotone(true,{silent:true});setGrain(.25);setRGB(true);setFormat(0);toast('Controles restablecidos.');};
 $('colorA').oninput=e=>{a=hexRgb(e.target.value);$('swatchA').style.setProperty('--swatch',e.target.value);$('color-track').style.setProperty('--a',e.target.value)};
 $('colorB').oninput=e=>{b=hexRgb(e.target.value);$('swatchB').style.setProperty('--swatch',e.target.value);$('color-track').style.setProperty('--b',e.target.value)};
-$('color-track').style.setProperty('--a','#6654e8');$('color-track').style.setProperty('--b','#ff9977');setTrail(.35);setBalance(.5);setDuotone(true,{silent:true});
+$('color-track').style.setProperty('--a','#6654e8');$('color-track').style.setProperty('--b','#ff9977');setTrail(.35);setBalance(.5);setDuotone(true,{silent:true});setGrain(.25);setRGB(true);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('fx-sheet').classList.contains('hidden'))closeFX();});
 window.addEventListener('resize',updatePreviewSize);updatePreviewSize();
 document.addEventListener('visibilitychange',()=>{if(document.hidden&&recording)stopRecording()});
+expireEntries().then(updateGalleryCount).catch(console.warn);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 })();
 </script>
